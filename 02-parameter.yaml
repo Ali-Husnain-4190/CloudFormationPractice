@@ -9,6 +9,7 @@ Parameters:
     - t2.medium
     Description: Which  Instance type you want to choose
 
+
 Resources:
   MyInstance:
     Type: AWS::EC2::Instance

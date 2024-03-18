@@ -1,0 +1,43 @@
+--- 
+Parameters:
+  InstanceTypeParameter:
+    Type: String
+    Default: t3.micro
+    AllowedValues:
+    - t2.micro
+    - t3.micro
+    - t2.medium
+    Description: Which  Instance type you want to choose
+
+Mappings:
+  RegionMap:
+    us-east-1:
+      HVM64: ami-0d7a109bf30624c99
+      HVMG2: ami-0d7a109bf30624c10
+    us-west-1:
+      HVM64: ami-0d7a109bf30624c33
+      HVMG2: ami-0d7a109bf30624c13
+
+
+Resources:
+  # MyInstance:
+  #   Type: AWS::EC2::Instance
+  #   Properties:
+  #     AvailabilityZone: us-east-1a
+  #     ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", HVM64]
+  #     InstanceType: !Ref InstanceTypeParameter
+  #     SecurityGroups:
+  #       - !Ref SSHsecurityGroup
+
+
+  SSHsecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: simple sg
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+
+
